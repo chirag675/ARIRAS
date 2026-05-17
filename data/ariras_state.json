@@ -1,0 +1,166 @@
+{
+  "audit_log": [
+    {
+      "time": "09 Apr 2026  14:12:50",
+      "action": "Regulation indexed",
+      "detail": "DPDP Act.pdf"
+    },
+    {
+      "time": "09 Apr 2026  14:13:46",
+      "action": "RAG query",
+      "detail": "what is this rag about\n"
+    },
+    {
+      "time": "09 Apr 2026  14:14:18",
+      "action": "Company profile uploaded",
+      "detail": "profile_policy_Paytm Information Security Policy.pdf"
+    },
+    {
+      "time": "09 Apr 2026  14:14:23",
+      "action": "Company profile saved",
+      "detail": "paytm"
+    },
+    {
+      "time": "09 Apr 2026  14:15:44",
+      "action": "Policy guidance generated",
+      "detail": "paytm"
+    },
+    {
+      "time": "09 Apr 2026  14:16:36",
+      "action": "Regulation indexed",
+      "detail": "policy_Paytm Information Security Policy.pdf"
+    },
+    {
+      "time": "09 Apr 2026  14:19:09",
+      "action": "Gap detection run",
+      "detail": "Policy vs policy_Paytm Information Security Policy.pdf"
+    },
+    {
+      "time": "09 Apr 2026  15:30:42",
+      "action": "Regulation indexed",
+      "detail": "DPDP Act.pdf"
+    },
+    {
+      "time": "09 Apr 2026  15:31:20",
+      "action": "Company profile uploaded",
+      "detail": "profile_policy_Paytm Information Security Policy.pdf"
+    },
+    {
+      "time": "09 Apr 2026  15:31:36",
+      "action": "Company profile uploaded",
+      "detail": "profile_About Paytm.pdf"
+    },
+    {
+      "time": "09 Apr 2026  15:32:27",
+      "action": "Company profile saved",
+      "detail": "patym"
+    },
+    {
+      "time": "09 Apr 2026  15:49:06",
+      "action": "Regulation indexed",
+      "detail": "DPDP Act.pdf"
+    },
+    {
+      "time": "09 Apr 2026  15:53:09",
+      "action": "Company profile uploaded",
+      "detail": "profile_About Paytm.pdf"
+    },
+    {
+      "time": "16 Apr 2026  07:49:52",
+      "action": "Regulation indexed",
+      "detail": "DPDP Act.pdf"
+    },
+    {
+      "time": "16 Apr 2026  07:50:09",
+      "action": "Company profile uploaded",
+      "detail": "profile_About Paytm.pdf"
+    },
+    {
+      "time": "16 Apr 2026  07:52:18",
+      "action": "Company profile saved",
+      "detail": "google pay"
+    },
+    {
+      "time": "16 Apr 2026  07:53:31",
+      "action": "Policy guidance generated",
+      "detail": "google pay"
+    },
+    {
+      "time": "16 Apr 2026  10:18:46",
+      "action": "Regulation indexed",
+      "detail": "DPDP Act.pdf"
+    },
+    {
+      "time": "16 Apr 2026  10:19:06",
+      "action": "Company profile uploaded",
+      "detail": "profile_About Paytm.pdf"
+    },
+    {
+      "time": "16 Apr 2026  10:22:35",
+      "action": "Policy guidance generated",
+      "detail": "paytm "
+    },
+    {
+      "time": "16 Apr 2026  19:18:06",
+      "action": "Regulation indexed",
+      "detail": "DPDP Act.pdf"
+    },
+    {
+      "time": "16 Apr 2026  19:18:31",
+      "action": "Company profile uploaded",
+      "detail": "profile_About Paytm.pdf"
+    },
+    {
+      "time": "17 May 2026  16:33:01",
+      "action": "Regulation indexed",
+      "detail": "DPDP Act.pdf"
+    },
+    {
+      "time": "17 May 2026  16:33:59",
+      "action": "RAG query",
+      "detail": "deadline for breach deadline \n"
+    },
+    {
+      "time": "17 May 2026  16:34:52",
+      "action": "Company profile uploaded",
+      "detail": "policy_Paytm Information Security Policy.pdf"
+    },
+    {
+      "time": "17 May 2026  16:35:11",
+      "action": "Company profile saved",
+      "detail": "Paytm"
+    },
+    {
+      "time": "17 May 2026  16:37:25",
+      "action": "Policy guidance generated",
+      "detail": "Paytm"
+    },
+    {
+      "time": "17 May 2026  16:38:35",
+      "action": "Gap detection run",
+      "detail": "Policy vs DPDP Act.pdf"
+    },
+    {
+      "time": "17 May 2026  16:39:25",
+      "action": "Gap detection run",
+      "detail": "Policy vs DPDP Act.pdf"
+    }
+  ],
+  "gap_history": [
+    {
+      "label": "Run 1",
+      "score": 0,
+      "gaps": 0
+    },
+    {
+      "label": "Run 2",
+      "score": 0,
+      "gaps": 0
+    },
+    {
+      "label": "Run 3",
+      "score": 40,
+      "gaps": 5
+    }
+  ]
+}
