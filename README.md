@@ -350,17 +350,3 @@ tiktoken>=0.7.0
 
 ---
 
-## License
-
-MIT License — free to use, modify, and distribute.
-
----
-
-## Team
-
-Token Burners 
-Harreet & Pragun
-
-Built for the **ET AI Hackathon 2026** — India's Largest GenAI Challenge.
-
-*"ARIRAS. Because compliance shouldn't be a luxury."*
