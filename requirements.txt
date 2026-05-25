@@ -11,3 +11,8 @@ python-dotenv>=1.0.1
 tiktoken>=0.7.0
 groq>=0.9.0
 langchain-groq>=0.1.6
+plotly
+pandas
+numpy
+faiss-cpu
+sentence-transformers
