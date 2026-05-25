@@ -24,11 +24,12 @@ numpy==1.26.4
 faiss-cpu==1.8.0
 sentence-transformers==2.7.0
 transformers==4.40.1
+
 torch==2.2.2
+torchvision==0.17.2
 
 protobuf==3.20.3
+
 opentelemetry-api==1.22.0
 opentelemetry-sdk==1.22.0
 opentelemetry-exporter-otlp-proto-grpc==1.22.0
-
-torchvision==0.17.2
