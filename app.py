@@ -26,8 +26,8 @@ from langchain_community.document_loaders import PyPDFLoader
 from core.edge_handler import detect_reg_conflicts
 
 st.set_page_config(
-    page_title="ARIRAS",
-    page_icon="⚖️",
+    page_title="GovernIQ",
+    page_icon="📜",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -36,6 +36,9 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
 
+/* =========================
+   LIGHT THEME (DEFAULT)
+========================= */
 :root {
     --bg:      #F7F8FA;
     --surface: #FFFFFF;
@@ -51,10 +54,40 @@ st.markdown("""
     --sans:    'DM Sans', sans-serif;
     --serif:   'DM Serif Display', serif;
 }
-html, body, [class*="css"] { font-family: var(--sans); background-color: var(--bg) !important; color: var(--text); }
+
+/* =========================
+   DARK THEME
+========================= */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg:      #0B0F17;
+        --surface: #111827;
+        --surface2:#0F172A;
+        --border:  #1F2937;
+        --text:    #E5E7EB;
+        --muted:   #9CA3AF;
+
+        --accent:  #4F7FFF;
+        --accent2: #00E5A0;
+        --danger:  #FF5C5C;
+        --warn:    #FFB347;
+    }
+}
+html, body, .stApp {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+}
 #MainMenu, footer, header { visibility: hidden; }
 .block-container { padding: 2.5rem 3rem 4rem 3rem !important; max-width: 1200px; }
 
+[data-theme="dark"] {
+    --bg: #0B0F17;
+    --surface:#111827;
+    --surface2:#0F172A;
+    --border:#1F2937;
+    --text:#E5E7EB;
+    --muted:#9CA3AF;
+}
 [data-testid="stSidebar"] {
     background: var(--surface) !important;
     border-right: 1px solid var(--border);
@@ -71,18 +104,18 @@ html, body, [class*="css"] { font-family: var(--sans); background-color: var(--b
 [data-testid="stSidebarCollapseButton"] { display: none !important; }
 section[data-testid="stSidebarContent"] { visibility: visible !important; }
 
-.ariras-header {
+.governiq-header {
     display: flex; align-items: center; gap: 20px;
     padding: 28px 32px;
     background: linear-gradient(135deg, #E3EAFD 0%, #F0F4F8 100%);
     border: 1px solid var(--border); border-radius: 16px; margin-bottom: 20px;
 }
-.ariras-logo {
+.governiq-logo {
     font-family: var(--serif); font-size: 40px; letter-spacing: -1px;
     background: linear-gradient(135deg, #4F7FFF, #00E5A0);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-.ariras-tagline { font-size: 13px; color: var(--muted); font-weight: 300; letter-spacing: 0.6px; margin-top: 4px; }
+.governiq-tagline { font-size: 13px; color: var(--muted); font-weight: 300; letter-spacing: 0.6px; margin-top: 4px; }
 
 .upload-zone { background: #FFFFFF; border: 1px solid #D1D5DB; border-radius: 14px; padding: 24px 28px; margin-bottom: 20px; }
 .upload-zone-ready { background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 14px; padding: 24px 28px; margin-bottom: 20px; }
@@ -149,9 +182,14 @@ hr { border-color: var(--border) !important; margin: 24px 0 !important; }
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<script>
+document.documentElement.setAttribute('data-theme', 'dark');
+</script>
+""", unsafe_allow_html=True)
 
 # ── Persistent storage ────────────────────────────────────────────────────────
-_PERSIST_FILE = os.path.join(_project_root, "data", "ariras_state.json")
+_PERSIST_FILE = os.path.join(_project_root, "data", "GovernIQ_state.json")
 
 def _load_persisted():
     try:
@@ -351,10 +389,10 @@ with st.sidebar:
         <div style='font-family:"DM Serif Display",serif;font-size:24px;
                     background:linear-gradient(135deg,#4F7FFF,#00E5A0);
                     -webkit-background-clip:text;-webkit-text-fill-color:transparent;'>
-            ARIRAS
+            GovernIQ
         </div>
         <div style='font-size:11px;color:#6B7280;margin-top:2px;'>
-            AI Regulatory Intelligence &amp;<br>Reporting Assurance System
+            Multi-Agent Regulatory Intelligence Platform
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -362,7 +400,7 @@ with st.sidebar:
     st.markdown("---")
     sidebar_view = st.radio(
         "Navigation",
-        ["Main App", "Reporting / Dashboard", "Audit Trail"],
+        ["Dashboard", "Regulatory Insights", "Activity Trail"],
         key="sidebar_view",
     )
     st.markdown("---")
@@ -371,7 +409,7 @@ with st.sidebar:
     st.markdown("<div class='section-label'>System status</div>", unsafe_allow_html=True)
     st.markdown(
         f"<span class='status-dot {'dot-green' if vs_ready else 'dot-red'}'></span>"
-        f"<span style='font-size:13px;'>{'Vector store ready' if vs_ready else 'No documents loaded'}</span>",
+        f"<span style='font-size:13px;'>{'Vector store ready' if vs_ready else 'No Compliance Data Loaded'}</span>",
         unsafe_allow_html=True,
     )
     st.markdown(
@@ -388,7 +426,7 @@ with st.sidebar:
     )
     if st.session_state.uploaded_regs:
         st.markdown("---")
-        st.markdown("<div class='section-label'>Loaded regulations</div>", unsafe_allow_html=True)
+        st.markdown("<div class='section-label'>Active Loaded Regulatory Frameworks</div>", unsafe_allow_html=True)
         for r in st.session_state.uploaded_regs:
             st.markdown(f"<span class='badge badge-blue'>{r}</span><br>", unsafe_allow_html=True)
     st.markdown("---")
@@ -397,12 +435,15 @@ with st.sidebar:
 
 # ── Header ────────────────────────────────────────────────────────────────────
 st.markdown("""
-<div class='ariras-header'>
+<div class='governiq-header'>
     <div>
-        <div class='ariras-logo'>ARIRAS</div>
-        <div class='ariras-tagline'>AI REGULATORY INTELLIGENCE &amp; REPORTING ASSURANCE SYSTEM</div>
+        <div class='governiq-logo'>GovernIQ</div>
+        <div class='governiq-tagline'>Multi-Agent Regulatory Intelligence Platform</div>
         <div style='font-size:13px;color:#1A1D23;margin-top:8px;font-weight:600;letter-spacing:0.3px;'>
-            Built in India, built for the world - AI-powered regulatory compliance for any law, any jurisdiction, any enterprise.
+            Built in India for global enterprises —
+            GovernIQ transforms regulations into actionable intelligence using
+            autonomous AI agents, semantic compliance reasoning,
+            policy gap detection, and governance analytics.
         </div>
     </div>
 </div>
@@ -412,12 +453,12 @@ st.markdown("""
 # ═════════════════════════════════════════════════════════════════════════════
 # VIEW: Reporting / Dashboard
 # ═════════════════════════════════════════════════════════════════════════════
-if st.session_state.sidebar_view == "Reporting / Dashboard":
+if st.session_state.sidebar_view == "Regulatory Insights":
 
     st.markdown("<div class='card-title'>Reporting &amp; Compliance Dashboard</div>", unsafe_allow_html=True)
     st.markdown(
         "<span style='font-size:13px;color:#6B7280;'>"
-        "Live compliance metrics and gap intelligence derived from your ARIRAS analysis runs."
+        "Real-time governance intelligence, compliance risk analytics, and regulatory gap visibility powered by GovernIQ's multi-agent AI engine."
         "</span>", unsafe_allow_html=True,
     )
     st.markdown("<br>", unsafe_allow_html=True)
@@ -444,7 +485,7 @@ if st.session_state.sidebar_view == "Reporting / Dashboard":
     st.markdown(f"""
     <div class='metric-grid'>
         <div class='metric-tile'><div class='metric-value' style='color:{score_color};'>{comp_score}%</div><div class='metric-label'>Compliance score</div></div>
-        <div class='metric-tile'><div class='metric-value' style='color:#CC3333;'>{gap_count}</div><div class='metric-label'>Gaps detected</div></div>
+        <div class='metric-tile'><div class='metric-value' style='color:#CC3333;'>{gap_count}</div><div class='metric-label'> Total Gaps detected</div></div>
         <div class='metric-tile'><div class='metric-value' style='color:#00A870;'>{met_count}</div><div class='metric-label'>Obligations met</div></div>
         <div class='metric-tile'><div class='metric-value' style='color:#4F7FFF;'>{len(st.session_state.uploaded_regs)}</div><div class='metric-label'>Regulations loaded</div></div>
     </div>
@@ -577,7 +618,7 @@ if st.session_state.sidebar_view == "Reporting / Dashboard":
     st.download_button(
         label="⬇  Export full compliance report (JSON)",
         data=json.dumps(report, indent=2),
-        file_name="ariras_compliance_report.json",
+        file_name="GovernIQ_compliance_report.json",
         mime="application/json",
     )
 
@@ -585,12 +626,12 @@ if st.session_state.sidebar_view == "Reporting / Dashboard":
 # ═════════════════════════════════════════════════════════════════════════════
 # VIEW: Audit Trail
 # ═════════════════════════════════════════════════════════════════════════════
-elif st.session_state.sidebar_view == "Audit Trail":
+elif st.session_state.sidebar_view == "Activity Trail":
 
     st.markdown("<div class='card-title'>Full Audit Trail</div>", unsafe_allow_html=True)
     st.markdown(
         "<span style='font-size:13px;color:#6B7280;'>"
-        "Every ARIRAS action logged with timestamp and decision rationale — "
+        "Every GovernIQ action logged with timestamp and decision rationale — "
         "exportable for regulatory traceability."
         "</span>", unsafe_allow_html=True,
     )
@@ -632,7 +673,7 @@ elif st.session_state.sidebar_view == "Audit Trail":
         st.download_button(
             label="⬇  Export audit log (JSON)",
             data=json.dumps(st.session_state.audit_log, indent=2),
-            file_name="ariras_audit_trail.json",
+            file_name="GovernIQ_audit_trail.json",
             mime="application/json",
         )
     else:
@@ -652,7 +693,7 @@ else:
 
     # ── How it works — 3 steps ────────────────────────────────────────────────
     step1 = "<div style='flex:1;background:#F8FAFF;border:1px solid #BFDBFE;border-radius:10px 0 0 10px;padding:12px 16px;'><div style='font-size:18px;margin-bottom:4px;'>①</div><div style='font-size:12px;font-weight:600;color:#1E40AF;margin-bottom:3px;'>Upload your regulation</div><div style='font-size:11px;color:#6B7280;line-height:1.5;'>Indian or global - DPDP Act, SEBI, RBI, GDPR, SOX, HIPAA, Companies Act, or any law worldwide.</div></div>"
-    step2 = "<div style='flex:1;background:#F8FFF8;border-top:1px solid #86EFAC;border-bottom:1px solid #86EFAC;border-left:none;border-right:none;padding:12px 16px;'><div style='font-size:18px;margin-bottom:4px;'>②</div><div style='font-size:12px;font-weight:600;color:#065F46;margin-bottom:3px;'>Index it in seconds</div><div style='font-size:11px;color:#6B7280;line-height:1.5;'>ARIRAS reads and embeds the entire document into a searchable knowledge base in less than 30 seconds.</div></div>"
+    step2 = "<div style='flex:1;background:#F8FFF8;border-top:1px solid #86EFAC;border-bottom:1px solid #86EFAC;border-left:none;border-right:none;padding:12px 16px;'><div style='font-size:18px;margin-bottom:4px;'>②</div><div style='font-size:12px;font-weight:600;color:#065F46;margin-bottom:3px;'>Index it in seconds</div><div style='font-size:11px;color:#6B7280;line-height:1.5;'>GovernIQ reads and embeds the entire document into a searchable knowledge base in less than 30 seconds.</div></div>"
     step3 = "<div style='flex:1;background:#FEFBF0;border:1px solid #FDE68A;border-radius:0 10px 10px 0;padding:12px 16px;'><div style='font-size:18px;margin-bottom:4px;'>③</div><div style='font-size:12px;font-weight:600;color:#92400E;margin-bottom:3px;'>Get instant compliance intelligence</div><div style='font-size:11px;color:#6B7280;line-height:1.5;'> - Ask questions. <div> - Build a regulation-specific policy from scratch. <div> - Detect gaps in your existing policies.</div></div>"
 
     st.markdown(
@@ -668,7 +709,7 @@ else:
     if not vs_ready:
         st.markdown(
             "<div style='font-size:13px;color:#6B7280;margin-bottom:12px;line-height:1.6;'>"
-            "Upload your regulation documents here. You can upload one at a time and process each."
+            "Upload regulatory frameworks, compliance policies, or governance documents to initialize GovernIQ’s intelligence engine."
             "</div>",
             unsafe_allow_html=True,
         )
@@ -736,7 +777,7 @@ else:
             st.markdown("<div style='font-size:12px;color:#6B7280;margin-bottom:8px;'>Add another regulation PDF to the knowledge base.</div>", unsafe_allow_html=True)
             uploaded_file = st.file_uploader("Upload regulation PDF", type=["pdf"], key="reg_upload_extra", label_visibility="collapsed")
             if uploaded_file:
-                if st.button("⚙️  Process & Index", key="btn_index_extra"):
+                if st.button("⚙️ Process & Index", key="btn_index_extra"):
                     with st.spinner("Indexing regulation..."):
                         try:
                             os.makedirs("data/uploads", exist_ok=True)
@@ -762,10 +803,14 @@ else:
     with tab1:
         st.markdown("<div class='card-title'>Regulation Q&amp;A</div>", unsafe_allow_html=True)
         st.markdown(
-            "<span style='font-size:13px;color:#6B7280;line-height:1.7;'>"
-            "Ask any question about the loaded regulations. "
-            "ARIRAS searches the document and answers with exact clause references. "
-            "You can ask as many questions as you like - just clear and retype for a new question."
+            "<span style='font-size:13px;color:#9CA3AF;line-height:1.9;'>"
+            "Interact directly with GovernIQ’s regulatory intelligence engine. "
+            "Ask questions across uploaded laws, circulars, frameworks, and compliance documents "
+            "to receive AI-generated answers with clause-level traceability, semantic grounding, "
+            "and governance context."
+            "<br><br>"
+            "Run unlimited regulatory queries in real time — from obligations and penalties "
+            "to reporting requirements, consent mandates, and operational risk exposure."
             "</span>", unsafe_allow_html=True,
         )
         st.markdown("<br>", unsafe_allow_html=True)
@@ -842,7 +887,7 @@ else:
         <div style='background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;
                     padding:14px 18px;font-size:13px;color:#1E40AF;line-height:1.7;margin-bottom:20px;'>
             🧠 <b>How this works</b> - Answer a few questions about your company.
-            ARIRAS analyses your answers together with the loaded regulation and tells you
+            GovernIQ analyses your answers together with the loaded regulation and tells you
             exactly what your policy needs to include, with sample clauses ready to adapt.
             Works for <b>any regulation</b>.
         </div>
@@ -853,7 +898,7 @@ else:
             <div style='background:#FEF9EE;border:1px solid #FDE68A;border-radius:8px;
                         padding:12px 16px;font-size:13px;color:#92400E;margin-bottom:16px;'>
                 💡 <b>Tip:</b> Upload a regulation in the panel above for targeted guidance.
-                Without it, ARIRAS will use general compliance best practices.
+                Without it, GovernIQ will use general compliance best practices.
             </div>""", unsafe_allow_html=True)
 
         step_now  = st.session_state.pb_step
@@ -874,7 +919,7 @@ else:
             st.markdown(
                 "<div style='font-size:13px;color:#6B7280;margin-bottom:16px;line-height:1.6;'>"
                 "Upload a company document <b>or</b> fill in the fields manually — or do both. "
-                "If you upload a file, ARIRAS will pre-fill the fields below for you to review and edit freely."
+                "If you upload a file, GovernIQ will pre-fill the fields below for you to review and edit freely."
                 "</div>", unsafe_allow_html=True,
             )
 
@@ -977,7 +1022,7 @@ else:
             st.markdown(
                 "<div style='font-size:13px;color:#6B7280;margin-bottom:16px;'>"
                 "You can be as honest as you can. "
-                "ARIRAS needs to understand your starting point to give useful guidance."
+                "GovernIQ needs to understand your starting point to give useful guidance."
                 "</div>", unsafe_allow_html=True,
             )
             pb_compliance_concerns = st.text_area(
@@ -1009,7 +1054,7 @@ else:
                     if not pb_compliance_concerns.strip():
                         st.warning("⚠️ Please tell us your compliance concerns.")
                     else:
-                        with st.spinner("ARIRAS is analysing your business and building guidance..."):
+                        with st.spinner("GovernIQ is analysing your business and building guidance..."):
                             try:
                                 reg_context = ""
                                 if st.session_state.vectorstore_ready:
@@ -1060,7 +1105,7 @@ else:
                         unsafe_allow_html=True,
                     )
                     if st.session_state.policy_excel_bytes:
-                        fname = f"ARIRAS_Policy_Guidance_{st.session_state.get('pb_company_name','Company').replace(' ','_')}.xlsx"
+                        fname = f"GovernIQ_Policy_Guidance_{st.session_state.get('pb_company_name','Company').replace(' ','_')}.xlsx"
                         st.download_button(
                             label="⬇  Download Policy Guidance (Excel)",
                             data=st.session_state.policy_excel_bytes,
@@ -1074,7 +1119,7 @@ else:
                     st.markdown(f"""
                     <div style='background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;
                                 padding:14px 16px;font-size:13px;color:#1E40AF;margin-top:16px;line-height:1.7;'>
-                        📌 <b>ARIRAS Summary:</b> {g.get("summary")}
+                        📌 <b>GovernIQ Summary:</b> {g.get("summary")}
                     </div>""", unsafe_allow_html=True)
 
                 sections = g.get("sections", [])
@@ -1115,7 +1160,7 @@ else:
         st.markdown("<div class='card-title'>🔍 Policy Gap Detector</div>", unsafe_allow_html=True)
         st.markdown(
             "<span style='font-size:13px;color:#6B7280;'>"
-            "Upload your company's existing policy document. ARIRAS maps every obligation "
+            "Upload your company's existing policy document. GovernIQ maps every obligation "
             "from the loaded regulation against your policy and flags exactly what's missing."
             "</span>", unsafe_allow_html=True,
         )
@@ -1267,7 +1312,7 @@ else:
                 st.download_button(
                     label="⬇  Download Gap Analysis Report (Excel)",
                     data=excel_bytes,
-                    file_name=f"ARIRAS_Gap_Analysis_{pname}.xlsx",
+                    file_name=f"GovernIQ_Gap_Analysis_{pname}.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                     use_container_width=False,
                 )
