@@ -1,9 +1,12 @@
-# ARIRAS - AI Regulatory Intelligence & Reporting Assurance System
+# GovernIQ - Multi-Agent Regulatory Intelligence Platform
 ---
-HOSTED ON STREAMLIT 
-## What is ARIRAS?
+HOSTED ON STREAMLIT
 
-ARIRAS is a multi-agent AI system that helps Indian and Global enterprises understand, interpret, and comply with government regulations - without needing a team of lawyers or a ₹50 lakh consulting budget.
+What is GoverniQ?
+
+GoverniQ is a multi-agent AI system that helps Indian and global enterprises understand, interpret, and comply with government regulations—without needing a full legal team or expensive consulting support.
+
+It simplifies complex regulatory frameworks into clear, actionable insights, enabling faster and more efficient compliance management.
 
 **The problem it solves:**
 
@@ -25,9 +28,9 @@ The result: not just penalties - but delayed decisions, operational inefficienci
 Even the most advanced tech companies struggle with compliance at scale. Google has faced multiple regulatory penalties under GDPR
 In 2019, it was fined €50 million by the French regulator for lack of transparency and valid consent
 
-**What ARIRAS does:**
+**What GovernIQ does:**
 
-Upload any regulation PDF (DPDP Act, SEBI circular, RBI guideline, Companies Act — anything). ARIRAS reads it, understands it, and gives your company:
+Upload any regulation PDF (DPDP Act, SEBI circular, RBI guideline, Companies Act — anything). GovernIQ reads it, understands it, and gives your company:
 
 1. **Answers to compliance questions** with exact clause citations
 2. **Gap analysis** - maps your company policy against the regulation and tells you exactly what's missing
@@ -112,7 +115,7 @@ Upload any regulation PDF (DPDP Act, SEBI circular, RBI guideline, Companies Act
 ## Project Structure
 
 ```
-ariras/
+GovernIQ/
 │
 ├── app.py                     # Main Streamlit app — all UI views
 │
@@ -147,8 +150,8 @@ ariras/
 ### Step 1 — Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ariras.git
-cd ariras
+git clone https://github.com/YOUR_USERNAME/GovernIQ.git
+cd GovernIQ
 ```
 
 ### Step 2 — Install dependencies
@@ -204,7 +207,7 @@ Open your browser at `http://localhost:8501`
 ### Tab 1 — Regulation Q&A
 
 1. Upload any regulation PDF (DPDP Act, SEBI circular, RBI guideline, etc.)
-2. Click **Process & Index** — ARIRAS chunks and embeds the document
+2. Click **Process & Index** — GovernIQ chunks and embeds the document
 3. Type any compliance question
 4. Get a precise answer with exact clause references
 
@@ -220,7 +223,7 @@ Open your browser at `http://localhost:8501`
 1. Index a regulation in Tab 1 first
 2. Upload your company's existing policy document (PDF or TXT)
 3. Click **Run Gap Analysis**
-4. ARIRAS returns:
+4. GovernIQ returns:
    - Compliance score (0–100%)
    - List of gaps with severity (HIGH / MEDIUM / LOW)
    - List of obligations already met
@@ -241,7 +244,7 @@ Open your browser at `http://localhost:8501`
    - Priority actions
    - Readiness score
 
-> Works for **any regulation** — ARIRAS adapts based on what you uploaded and what your business does.
+> Works for **any regulation** — GovernIQ adapts based on what you uploaded and what your business does.
 
 ---
 
@@ -266,7 +269,7 @@ Open your browser at `http://localhost:8501`
 
 ## Supported Regulations
 
-ARIRAS is **regulation-agnostic** — it works with any PDF you upload. Tested with:
+GovernIQ is **regulation-agnostic** — it works with any PDF you upload. Tested with:
 
 | Regulation | Country | Domain |
 |---|---|---|
@@ -284,7 +287,7 @@ ARIRAS is **regulation-agnostic** — it works with any PDF you upload. Tested w
 
 | Feature | Description |
 |---|---|
-| **Regulation-agnostic RAG** | Upload any regulation PDF — ARIRAS learns it instantly |
+| **Regulation-agnostic RAG** | Upload any regulation PDF — GovernIQ learns it instantly |
 | **Clause-level citations** | Every answer references exact clauses from the document |
 | **Policy gap analysis** | Maps your policy against regulation obligations automatically |
 | **Plain-English guidance** | Tells companies what to include, not just what the law says |
@@ -333,7 +336,7 @@ tiktoken>=0.7.0
 | Target enterprises in India | 6.3 crore MSMEs + 1,400+ listed companies |
 | Cost of compliance consulting | ₹2–80 lakh per engagement (Small to Mid Sized) |
 | Cost of compliance consulting | ₹ 80 + lakh per engagement (Large Sized) 
-| ARIRAS cost | Entire Project costs 5000 INR per hour (Typically takes 50 hours) |
+| GovernIQ cost | Entire Project costs 5000 INR per hour (Typically takes 50 hours) |
 | Time to first compliance insight | Under 60 seconds |
 
 ---
