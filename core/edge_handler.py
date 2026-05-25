@@ -1,5 +1,5 @@
 """
-core/edge_handler.py  —  ARIRAS Edge Case & Confidence Engine
+core/edge_handler.py  —  GovernIQ Edge Case & Confidence Engine
 ==============================================================
 
 Two real systems, no string matching, no word-count heuristics.
