@@ -18,7 +18,7 @@ GROQ_MODEL   = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 GAP_PROMPT = PromptTemplate(
     input_variables=["regulation_clauses", "policy_text"],
     template="""
-You are ARIRAS — an expert AI compliance auditor.
+You are GovernIQ — an expert AI compliance auditor.
 
 Your job is to compare a COMPANY POLICY against REGULATION CLAUSES and produce a detailed gap analysis report.
 
@@ -160,12 +160,12 @@ def build_gap_excel(result: dict, regulation_name: str = "", policy_name: str = 
     import datetime; generated = datetime.datetime.now().strftime("%d %b %Y, %H:%M")
 
     ws1 = wb.active; ws1.title = "Gap Analysis"
-    ws1.merge_cells("A1:G1"); ws1["A1"] = "ARIRAS — Compliance Gap Analysis Report"
+    ws1.merge_cells("A1:G1"); ws1["A1"] = "GovernIQ — Compliance Gap Analysis Report"
     ws1["A1"].font = Font(name="Arial", size=14, bold=True, color=WHITE)
     ws1["A1"].fill = fill(BLUE_DARK); ws1["A1"].alignment = Alignment(horizontal="center", vertical="center")
     ws1.row_dimensions[1].height = 32
     ws1.merge_cells("A2:G2")
-    ws1["A2"] = f"Policy: {policy_name or 'Uploaded Document'}   |   Regulation: {reg_used}   |   Generated: {generated}   |   ARIRAS"
+    ws1["A2"] = f"Policy: {policy_name or 'Uploaded Document'}   |   Regulation: {reg_used}   |   Generated: {generated}   |   GovernIQ"
     ws1["A2"].font = Font(name="Arial", size=10, color=WHITE); ws1["A2"].fill = fill(BLUE_MID)
     ws1["A2"].alignment = Alignment(horizontal="center", vertical="center"); ws1.row_dimensions[2].height = 18
     ws1.merge_cells("A3:G3")
@@ -196,7 +196,7 @@ def build_gap_excel(result: dict, regulation_name: str = "", policy_name: str = 
         ws1.column_dimensions[get_column_letter(i)].width = w
 
     ws2 = wb.create_sheet("Obligations Met")
-    ws2.merge_cells("A1:C1"); ws2["A1"] = "ARIRAS — Obligations Already Met"
+    ws2.merge_cells("A1:C1"); ws2["A1"] = "GovernIQ — Obligations Already Met"
     ws2["A1"].font = Font(name="Arial", size=13, bold=True, color=WHITE); ws2["A1"].fill = fill(GREEN_DARK)
     ws2["A1"].alignment = Alignment(horizontal="center", vertical="center"); ws2.row_dimensions[1].height = 28
     ws2.merge_cells("A2:C2"); ws2["A2"] = f"Policy: {policy_name or 'Uploaded Document'}   |   Regulation: {reg_used}"
@@ -217,7 +217,7 @@ def build_gap_excel(result: dict, regulation_name: str = "", policy_name: str = 
     ws2.column_dimensions["A"].width = 5; ws2.column_dimensions["B"].width = 40; ws2.column_dimensions["C"].width = 60
 
     ws3 = wb.create_sheet("Summary")
-    ws3.merge_cells("A1:B1"); ws3["A1"] = "ARIRAS — Compliance Summary"
+    ws3.merge_cells("A1:B1"); ws3["A1"] = "GovernIQ — Compliance Summary"
     ws3["A1"].font = Font(name="Arial", size=13, bold=True, color=WHITE); ws3["A1"].fill = fill(BLUE_DARK)
     ws3["A1"].alignment = Alignment(horizontal="center", vertical="center"); ws3.row_dimensions[1].height = 28
     ws3.merge_cells("A2:B2"); ws3["A2"] = f"Compliance Score: {score} / 100"
