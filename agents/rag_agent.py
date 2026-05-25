@@ -17,7 +17,7 @@ GROQ_MODEL   = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 RAG_PROMPT = PromptTemplate(
     input_variables=["context", "question"],
     template="""
-You are ARIRAS — an expert AI regulatory compliance analyst.
+You are GovernIQ — an expert AI regulatory compliance analyst.
 Use ONLY the regulation text below to answer the question.
 Be precise, cite article numbers or clause references where available.
 If the answer is not in the context, say: "This information is not found in the uploaded regulation."
